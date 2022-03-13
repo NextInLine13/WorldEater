@@ -1,4 +1,5 @@
 #include "game.h"
+#include "player.h"
 
 #include "raylib.h"
 
@@ -15,23 +16,15 @@ void Game::Init( const std::string& title, int width, int height, bool fullscree
 
 void Game::Start()
 {
-    Math::Vector2 recPosition = { 50, 50 };
-    Math::Vector2 destPosition = recPosition;
-
+    Player player;
     while( !WindowShouldClose() )
     {
-        if( IsMouseButtonPressed( MOUSE_BUTTON_LEFT ) )
-        {
-            int x = GetMouseX();
-            int y = GetMouseY();
-            destPosition = { x, y };
-        }
-
+        player.Update();
 
         BeginDrawing();
         ClearBackground( DARKGREEN );
-        DrawRectangle( recPosition.x, recPosition.y, 100, 200, SKYBLUE );
+        player.Render();        
         EndDrawing();
-        recPosition = Math::MoveTowards( recPosition, destPosition, 3 );
+
     }
 }
