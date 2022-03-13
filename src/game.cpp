@@ -8,6 +8,7 @@
 void Game::Init( const std::string& title, int width, int height, bool fullscreen )
 {
     InitWindow( width, height, title.c_str() );
+    HideCursor();
     if( fullscreen && !IsWindowFullscreen() )
     {
         ToggleFullscreen();
