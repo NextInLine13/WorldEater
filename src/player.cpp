@@ -2,6 +2,8 @@
 
 #include "../include/raylib.h"
 
+Player::Player() : x( 0 ), y( 0 ), radius( 10 ) {}
+
 void Player::Update()
 {
     this->x = GetMouseX();
@@ -10,5 +12,5 @@ void Player::Update()
 
 void Player::Render()
 {
-    DrawRectangle( this->x, this->y, 100, 200, SKYBLUE );
+    DrawCircle( this->x, this->y, this->radius, SKYBLUE );
 }

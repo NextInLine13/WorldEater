@@ -24,7 +24,7 @@ void Game::Start()
 
         BeginDrawing();
         ClearBackground( DARKGREEN );
-        player.Render();        
+        player.Render();
         EndDrawing();
 
     }
