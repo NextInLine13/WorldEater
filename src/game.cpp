@@ -1,5 +1,4 @@
 #include "game.h"
-#include "game_object.h"
 #include "player.h"
 
 #include "Math.h"
@@ -19,14 +18,31 @@ void Game::Init( const std::string& title, int width, int height, bool fullscree
 
 void Game::Start()
 {
-    std::unique_ptr< GameObject > player = std::make_unique< Player >();
+    gameObjects.emplace_back( std::make_unique< Player >() );
     while( !WindowShouldClose() )
     {
-        player->Update();
-
-        BeginDrawing();
-        ClearBackground( DARKGREEN );
-        player->Render();
-        EndDrawing();
+        Update();
+        Render();
     }
+}
+
+void Game::Update()
+{
+    for ( auto& gameObject : gameObjects )
+    {
+        gameObject->Update();
+    }
+}
+
+void Game::Render()
+{
+    BeginDrawing();
+
+        ClearBackground( DARKGREEN );
+        for ( auto& gameObject : gameObjects )
+        {
+            gameObject->Render();
+        }
+
+    EndDrawing();
 }
