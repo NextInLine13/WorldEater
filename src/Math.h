@@ -25,4 +25,5 @@ namespace Math {
     };
 
     Vector2 MoveTowards( Vector2 current, Vector2 target, float step );
+
 } // namespace::Math
