@@ -1,9 +1,11 @@
 #include "game.h"
+#include "game_object.h"
 #include "player.h"
 
-#include "raylib.h"
-
 #include "Math.h"
+
+#include "raylib.h"
+#include <memory>
 
 void Game::Init( const std::string& title, int width, int height, bool fullscreen )
 {
@@ -17,15 +19,14 @@ void Game::Init( const std::string& title, int width, int height, bool fullscree
 
 void Game::Start()
 {
-    Player player;
+    std::unique_ptr< GameObject > player = std::make_unique< Player >();
     while( !WindowShouldClose() )
     {
-        player.Update();
+        player->Update();
 
         BeginDrawing();
         ClearBackground( DARKGREEN );
-        player.Render();
+        player->Render();
         EndDrawing();
-
     }
 }
